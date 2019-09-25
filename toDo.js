@@ -31,7 +31,7 @@ function List() {
  * @param {String} details     The task itself i.e. description
  * @param {object} completion  The time the task is expected to be complete
  */
-function item(name, details, completion) {
+function item(name, completion, details) {
   this.name = name;
   this.details = details;
   this.completion = completion;
@@ -39,6 +39,7 @@ function item(name, details, completion) {
   this.divText;
   this.divBtn;
   this.text;
+  this.heading;
   this.btnDelete;
   this.btnMoveUp;
   this.btnMoveDown;
@@ -52,6 +53,7 @@ function item(name, details, completion) {
     divItem = new DomElement("div");
     divText = new DomElement("div");
     divBtn = new DomElement("div");
+    heading = new DomElement("h3");
     text = new DomElement("p");
     br = new DomElement("br");
     btnDelete = new DomElement("button");
@@ -59,25 +61,36 @@ function item(name, details, completion) {
     btnMoveDown = new DomElement("button");
     divTempList = document.getElementById("divItemList");
 
+    divBtn.element.id = "divBtn";
     btnMoveUp.element.id = "btnMoveUp";
+    btnDelete.element.className = "btn btn-danger";
     btnMoveDown.element.id = "btnMoveDown";
+    btnMoveDown.element.className = "btn";
     btnDelete.element.id = "btnDelete";
+    btnMoveUp.element.className = "btn";
 
     btnDelete.element.innerHTML = "X";
     btnMoveUp.element.innerHTML = "UP";
-    btnMoveDown.element.innerHTML = "DWN";
+    btnMoveDown.element.innerHTML = "DOWN";
 
-    divItem.append(text);
     divItem.append(divText);
-    divItem.append(text);
     divItem.append(divBtn);
+    divText.append(heading);
+    divText.append(text);
     divBtn.append(btnDelete);
     divBtn.append(btnMoveUp);
     divBtn.append(btnMoveDown);
 
     divTempList.appendChild(divItem.element);
-    console.log(document.body);
-    text.element.innerHTML = this.name + this.details + this.completion;
+    //console.log(document.body);
+    heading.element.innerHTML = this.name + this.completion;
+    text.element.innerHTML = this.details;
+    divItem.element.style.padding = "8px";
+    btnMoveDown.element.style.position = "right";
+
+    if (count % 2) {
+      divItem.element.style.backgroundColor = "#fcdf86";
+    }
   };
 }
 
