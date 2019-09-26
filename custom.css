@@ -1,4 +1,34 @@
+#headBoxs {
+  padding: 3px;
+  background-color: rgb(177, 241, 241);
+  box-shadow: 1px 1px #cacaca;
+}
+#divItem {
+  margin: 6px;
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 1px 1px #cacaca;
+}
+#divText {
+  display: inline-block;
+  max-width: 85%;
+}
 #divBtn {
+  display: inline-block;
+  position: sticky;
+  left: 85%;
+}
+#divOrder {
   position: relative;
-  left: 80%;
+  left: 2%;
+  display: inline-block;
+}
+#btnMoveDown {
+  display: block;
+}
+#btnMoveUp {
+  display: block;
+}
+#btnDelete {
+  display: inline-block;
 }

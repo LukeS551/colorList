@@ -38,9 +38,11 @@ function item(name, completion, details) {
   this.divItem;
   this.divText;
   this.divBtn;
+  this.divOrder;
   this.text;
   this.heading;
   this.btnDelete;
+  this.btnEdit;
   this.btnMoveUp;
   this.btnMoveDown;
   this.divTempList;
@@ -53,33 +55,44 @@ function item(name, completion, details) {
     divItem = new DomElement("div");
     divText = new DomElement("div");
     divBtn = new DomElement("div");
+    divOrder = new DomElement("div");
     heading = new DomElement("h3");
     text = new DomElement("p");
     br = new DomElement("br");
+    btnEdit = new DomElement("button");
     btnDelete = new DomElement("button");
     btnMoveUp = new DomElement("button");
     btnMoveDown = new DomElement("button");
     divTempList = document.getElementById("divItemList");
 
+    divItem.element.id = "divItem";
+    divText.element.id = "divText";
     divBtn.element.id = "divBtn";
+    divOrder.element.id = "divOrder";
     btnMoveUp.element.id = "btnMoveUp";
     btnDelete.element.className = "btn btn-danger";
     btnMoveDown.element.id = "btnMoveDown";
     btnMoveDown.element.className = "btn";
     btnDelete.element.id = "btnDelete";
+    btnEdit.element.id = "btnEdit";
+    btnEdit.element.className = "btn btn-success";
     btnMoveUp.element.className = "btn";
 
     btnDelete.element.innerHTML = "X";
+    btnEdit.element.innerHTML = "<";
     btnMoveUp.element.innerHTML = "UP";
     btnMoveDown.element.innerHTML = "DOWN";
 
     divItem.append(divText);
     divItem.append(divBtn);
+
     divText.append(heading);
     divText.append(text);
+    divBtn.append(btnEdit);
     divBtn.append(btnDelete);
-    divBtn.append(btnMoveUp);
-    divBtn.append(btnMoveDown);
+    divBtn.append(divOrder);
+    divOrder.append(btnMoveUp);
+    divOrder.append(btnMoveDown);
 
     divTempList.appendChild(divItem.element);
     //console.log(document.body);
@@ -90,6 +103,8 @@ function item(name, completion, details) {
 
     if (count % 2) {
       divItem.element.style.backgroundColor = "#fcdf86";
+    } else {
+      divItem.element.style.backgroundColor = "#fafafa";
     }
   };
 }
