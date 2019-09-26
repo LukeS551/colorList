@@ -1,5 +1,5 @@
-#headBoxs {
-  padding: 3px;
+#headBox {
+  padding: 8px;
   background-color: rgb(177, 241, 241);
   box-shadow: 1px 1px #cacaca;
 }
@@ -11,7 +11,8 @@
 }
 #divText {
   display: inline-block;
-  max-width: 85%;
+  width: 900%;
+  max-width: 70%;
 }
 #divBtn {
   display: inline-block;
@@ -31,4 +32,16 @@
 }
 #btnDelete {
   display: inline-block;
+}
+#divKey {
+  display: block;
+  padding-bottom: 4px;
+}
+#btnSave {
+  display: block;
+  width: inherit;
+}
+input,
+textarea {
+  border: none;
 }

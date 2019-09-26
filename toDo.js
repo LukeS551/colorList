@@ -19,9 +19,9 @@ function List() {
     while (divTempList.hasChildNodes()) {
       divTempList.removeChild(divTempList.firstChild);
     }
-    this.itemList.forEach(function(temp) {
-      temp.draw();
-    });
+    for (let counter = this.itemList.length - 1; counter >= 0; counter--) {
+      this.itemList[counter].draw();
+    }
   };
 }
 
@@ -96,7 +96,7 @@ function item(name, completion, details) {
 
     divTempList.appendChild(divItem.element);
     //console.log(document.body);
-    heading.element.innerHTML = this.name + this.completion;
+    heading.element.innerHTML = this.name + " " + this.completion;
     text.element.innerHTML = this.details;
     divItem.element.style.padding = "8px";
     btnMoveDown.element.style.position = "right";
@@ -104,7 +104,7 @@ function item(name, completion, details) {
     if (count % 2) {
       divItem.element.style.backgroundColor = "#fcdf86";
     } else {
-      divItem.element.style.backgroundColor = "#fafafa";
+      divItem.element.style.backgroundColor = "#f5f5f5";
     }
   };
 }
@@ -123,6 +123,11 @@ function addItem() {
   list1.add(item1);
   list1.draw();
 }
+
+/**
+ * Creates Node elements
+ * @param {node} type
+ */
 function DomElement(type) {
   this.element = document.createElement(type);
   this.append = function(name) {
