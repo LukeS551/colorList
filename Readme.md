@@ -7,7 +7,7 @@ There are numerous things I could do with this.
 1. make a calendar app featuring this.
 2. Make a slack application.
 
-###Steps
+### Steps
 1. Finish the styling and 
 2. Finish delete and shift functionality
 3. Impliment edit functionality

@@ -5,14 +5,23 @@ let count = 0;
  *
  */
 function List() {
+  this.counterDelete = 0;
   this.itemList = [];
+  let divItemList = document.createElement("div");
+  divItemList.id = "divItemList";
+  divItemList.onclick = function(event) {
+    let target = event.target;
+    if (target.tagName != "BUTTON") {
+      console.log("No");
+      return;
+    }
+    deleteFunc(target);
+  };
   this.add = function(item1) {
     this.itemList.push(item1);
   };
 
   this.draw = function() {
-    let divItemList = document.createElement("div");
-    divItemList.id = "divItemList";
     document.body.appendChild(divItemList);
 
     let divTempList = document.getElementById("divItemList");
@@ -22,6 +31,22 @@ function List() {
     for (let counter = this.itemList.length - 1; counter >= 0; counter--) {
       this.itemList[counter].draw();
     }
+    for (
+      counterDelete = 0;
+      counterDelete < this.itemList.length;
+      counterDelete++
+    ) {
+      //this.itemList[counterDelete]
+      //.getDelete()
+      //.element.addEventListener("click", deleteFunc);
+    }
+  };
+  deleteFunc = function(target) {
+    target.parentNode.parentNode.remove();
+
+    //let divTempList = document.getElementById("divItemList");
+    //if (divTempList.hasChildNodes()) {
+    //divTempList.removeChild(divTempList.childNodes[counterDelete]);
   };
 }
 
@@ -35,76 +60,68 @@ function item(name, completion, details) {
   this.name = name;
   this.details = details;
   this.completion = completion;
-  this.divItem;
-  this.divText;
-  this.divBtn;
-  this.divOrder;
-  this.text;
-  this.heading;
-  this.btnDelete;
-  this.btnEdit;
-  this.btnMoveUp;
-  this.btnMoveDown;
-  this.divTempList;
+  this.divItem = new DomElement("div");
+  this.divText = new DomElement("div");
+  this.divBtn = new DomElement("div");
+  this.divOrder = new DomElement("div");
+  this.heading = new DomElement("h3");
+  this.text = new DomElement("p");
+  this.br = new DomElement("br");
+  this.btnEdit = new DomElement("button");
+  this.btnDelete = new DomElement("button");
+  this.btnMoveUp = new DomElement("button");
+  this.btnMoveDown = new DomElement("button");
+
+  this.divItem.element.id = "divItem";
+  this.divText.element.id = "divText";
+  this.divBtn.element.id = "divBtn";
+  this.divOrder.element.id = "divOrder";
+  this.btnMoveUp.element.id = "btnMoveUp";
+  this.btnDelete.element.className = "btn btn-danger";
+  this.btnMoveDown.element.id = "btnMoveDown";
+  this.btnMoveDown.element.className = "btn";
+  this.btnDelete.element.id = "btnDelete";
+  this.btnEdit.element.id = "btnEdit";
+  this.btnEdit.element.className = "btn btn-success";
+  this.btnMoveUp.element.className = "btn";
+  this.getDelete = function() {
+    return this.btnDelete;
+  };
 
   let text;
   this.draw = function() {
     //console.log(count);
     count++;
 
-    divItem = new DomElement("div");
-    divText = new DomElement("div");
-    divBtn = new DomElement("div");
-    divOrder = new DomElement("div");
-    heading = new DomElement("h3");
-    text = new DomElement("p");
-    br = new DomElement("br");
-    btnEdit = new DomElement("button");
-    btnDelete = new DomElement("button");
-    btnMoveUp = new DomElement("button");
-    btnMoveDown = new DomElement("button");
-    divTempList = document.getElementById("divItemList");
+    this.divTempList = document.getElementById("divItemList");
 
-    divItem.element.id = "divItem";
-    divText.element.id = "divText";
-    divBtn.element.id = "divBtn";
-    divOrder.element.id = "divOrder";
-    btnMoveUp.element.id = "btnMoveUp";
-    btnDelete.element.className = "btn btn-danger";
-    btnMoveDown.element.id = "btnMoveDown";
-    btnMoveDown.element.className = "btn";
-    btnDelete.element.id = "btnDelete";
-    btnEdit.element.id = "btnEdit";
-    btnEdit.element.className = "btn btn-success";
-    btnMoveUp.element.className = "btn";
+    this.btnDelete.element.innerHTML = "X";
+    this.btnEdit.element.innerHTML = "<";
+    this.btnMoveUp.element.innerHTML = "UP";
+    this.btnMoveDown.element.innerHTML = "DOWN";
 
-    btnDelete.element.innerHTML = "X";
-    btnEdit.element.innerHTML = "<";
-    btnMoveUp.element.innerHTML = "UP";
-    btnMoveDown.element.innerHTML = "DOWN";
+    this.divItem.append(this.divText);
+    this.divItem.append(this.divBtn);
 
-    divItem.append(divText);
-    divItem.append(divBtn);
+    this.divText.append(this.heading);
+    this.divText.append(this.text);
+    this.divBtn.append(this.btnEdit);
+    this.divBtn.append(this.btnDelete);
+    this.divBtn.append(this.divOrder);
+    this.divOrder.append(this.btnMoveUp);
+    this.divOrder.append(this.btnMoveDown);
 
-    divText.append(heading);
-    divText.append(text);
-    divBtn.append(btnEdit);
-    divBtn.append(btnDelete);
-    divBtn.append(divOrder);
-    divOrder.append(btnMoveUp);
-    divOrder.append(btnMoveDown);
-
-    divTempList.appendChild(divItem.element);
+    this.divTempList.appendChild(this.divItem.element);
     //console.log(document.body);
-    heading.element.innerHTML = this.name + " " + this.completion;
-    text.element.innerHTML = this.details;
-    divItem.element.style.padding = "8px";
-    btnMoveDown.element.style.position = "right";
+    this.heading.element.innerHTML = this.name + " " + this.completion;
+    this.text.element.innerHTML = this.details;
+    this.divItem.element.style.padding = "8px";
+    this.btnMoveDown.element.style.position = "right";
 
     if (count % 2) {
-      divItem.element.style.backgroundColor = "#fcdf86";
+      this.divItem.element.style.backgroundColor = "#fcdf86";
     } else {
-      divItem.element.style.backgroundColor = "#f5f5f5";
+      this.divItem.element.style.backgroundColor = "#f5f5f5";
     }
   };
 }
